@@ -1,12 +1,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link
-      rel="search"
-      type="application/opensearchdescription+xml"
-      title="DuckDuckBang"
-      href="./opensearch.xml"
-    />
     <style>
       @media (prefers-color-scheme: dark) {
         html {
@@ -15,18 +9,20 @@
       }
     </style>
     <script>
-      var urlParams = new URLSearchParams(window.location.search);
-      var defaultBang = `!${urlParams.get("d") ?? "ddg"}`;
-      var query = urlParams.get("q");
-      if(!query) return;
-      const bangRegex = /(^|\s)!\w+($|\s)/;
-      if (bangRegex.test(query)) {
-        window.location.replace(`https://duckduckgo.com/?q=${query}`);
-      } else {
-        window.location.replace(
-          `https://duckduckgo.com/?q=${defaultBang}%20${query}`,
-        );
-      }
+      (function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var defaultBang = `!${urlParams.get("d") ?? "ddg"}`;
+        var query = urlParams.get("q");
+        if (!query) return;
+        const bangRegex = /(^|\s)!\w+($|\s)/;
+        if (bangRegex.test(query)) {
+          window.location.replace(`https://duckduckgo.com/?q=${query}`);
+        } else {
+          window.location.replace(
+            `https://duckduckgo.com/?q=${defaultBang}%20${query}`,
+          );
+        }
+      })()
     </script>
     <meta charset="UTF-8" />
     <title>duck duck bang</title>
