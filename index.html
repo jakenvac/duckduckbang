@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        html {
+          background-color: black;
+        }
+      }
+    </style>
+    <script>
+      var urlParams = new URLSearchParams(window.location.search);
+      var defaultBang = `!${urlParams.get("d") ?? "ddg"}`;
+      var query = urlParams.get("q");
+      const bangRegex = /(^|\s)!\w+($|\s)/;
+      if (bangRegex.test(query)) {
+        window.location.replace(`https://duckduckgo.com/?q=${query}`);
+      } else {
+        window.location.replace(
+          `https://duckduckgo.com/?q=${defaultBang}%20${query}`,
+        );
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <title>duck duck bang</title>
+  </head>
+  <body></body>
+</html>
